@@ -14,7 +14,6 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
-  final Color color = Color(0xffD94928);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,12 +27,12 @@ class _MenuState extends State<Menu> {
               SizedBox(
                 child: Column(
                   children: [
-                    Image(image: AssetImage("lib/assets/images/menuimage.png")),
+                    Image(image: AssetImage("lib/assets/images/semente-logo.png")),
                     Container(
                       child: Column(
                         children: [
                           Text(
-                            "Hey there, Welcome back!",
+                            "Olá, seja bem vindo!",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 18),
                           ),
@@ -41,7 +40,7 @@ class _MenuState extends State<Menu> {
                             height: 5,
                           ),
                           Text(
-                            "Login to your account to continue",
+                            "Realize login para prosseguir",
                             textAlign: TextAlign.start,
                           ),
                         ],
@@ -56,39 +55,9 @@ class _MenuState extends State<Menu> {
               SizedBox(
                 height: 55,
                 width: MediaQuery.of(context).size.width - 40,
-                child: ElevatedButton.icon(
-                  icon: FaIcon(
-                    FontAwesomeIcons.google,
-                    color: Colors.black54,
-                  ),
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.white),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                        ),
-                      ),
-                      elevation: MaterialStateProperty.all(8.0)),
-                  onPressed: () {
-                    final provider = Provider.of<GoogleSignInProvider>(context,
-                        listen: false);
-                    provider.googleLogin();
-                  },
-                  label: Text(
-                    "Sign up with Google",
-                    style: TextStyle(color: color, fontSize: 14),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              SizedBox(
-                height: 55,
-                width: MediaQuery.of(context).size.width - 40,
                 child: TextButton(
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(color),
+                      backgroundColor: MaterialStateProperty.all(Colors.cyan),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0),
@@ -100,7 +69,7 @@ class _MenuState extends State<Menu> {
                         MaterialPageRoute(builder: (context) => SignUpPage()));
                   },
                   child: Text(
-                    "Sign up with Email",
+                    "Registrar com email",
                     style: TextStyle(color: Colors.white, fontSize: 14),
                   ),
                 ),
@@ -116,9 +85,9 @@ class _MenuState extends State<Menu> {
                       color: Colors.black,
                     ),
                     children: <TextSpan>[
-                      TextSpan(text: "Already have an account? "),
+                      TextSpan(text: "Já tem cadastro?  "),
                       TextSpan(
-                        text: ' Sign in',
+                        text: 'Fazer login',
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             Navigator.pushReplacement(
@@ -128,7 +97,7 @@ class _MenuState extends State<Menu> {
                           },
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Color(0xffD94928),
+                          color: Colors.cyan,
                           decoration: TextDecoration.underline,
                         ),
                       ),

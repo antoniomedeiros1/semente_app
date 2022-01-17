@@ -73,6 +73,7 @@ flutter:
     - lib/assets/images/signin_phonenumbericon.png
     - lib/assets/images/signin_icon.png
     - lib/assets/images/menuimage.png
+    - lib/assets/images/semente-logo.png
     
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
