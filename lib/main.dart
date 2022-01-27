@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth_db/constants.dart';
 import 'package:firebase_auth_db/services/authentication_service.dart';
 import 'package:firebase_auth_db/services/google_sign_in.dart';
 import 'package:firebase_auth_db/screens/homepage.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
 import 'services/google_sign_in.dart';
 
@@ -37,10 +39,10 @@ class MyApp extends StatelessWidget {
         ListenableProvider<GoogleSignInProvider>(
             create: (context) => GoogleSignInProvider()),
       ],
-      child: MaterialApp(
+      child: GetMaterialApp(
         theme: ThemeData(
           fontFamily: 'DM Sans',
-          primarySwatch: Colors.blue,
+          primaryColor: kPrimaryColor,
         ),
         home: AuthenticationWrapper(),
       ),

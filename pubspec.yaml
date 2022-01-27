@@ -40,7 +40,10 @@ dependencies:
   font_awesome_flutter: ^9.2.0
   provider: ^6.0.1
   firebase_core: ^1.10.6
-
+  sound_stream: ^0.3.0
+  rxdart: ^0.27.2
+  flutter_svg: ^0.23.0+1
+  get: ^4.3.8
 
 dev_dependencies:
   flutter_test:
@@ -74,6 +77,13 @@ flutter:
     - lib/assets/images/signin_icon.png
     - lib/assets/images/menuimage.png
     - lib/assets/images/semente-logo.png
+    - lib/assets/images/semente-logo-small.png
+    - lib/assets/images/svg/headphone.svg
+    - lib/assets/images/svg/tape.svg
+    - lib/assets/images/svg/Vector.svg
+    - lib/assets/images/svg/Vector-1.svg
+    - lib/assets/images/svg/VectorSmallBottom.svg
+    - lib/assets/images/svg/VectorSmallTop.svg
     
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
