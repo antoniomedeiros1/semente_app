@@ -58,9 +58,24 @@ class AuthenticationWrapper extends StatelessWidget {
         builder: (_, snapshot) {
           if (snapshot.hasData) {
             User? user = snapshot.data;
-            return HomePage();
+            return Scaffold(
+              appBar: AppBar(
+                backgroundColor: Colors.cyan,
+                actions: [
+                  IconButton(
+                    icon: Icon(Icons.logout),
+                    onPressed: () {
+                      context.read<AuthenticationService>().signOut();
+                    },
+                  ),
+                ],
+              ),
+              body: Text(
+                "Bem vindo, " + (user?.email).toString(),
+                textAlign: TextAlign.start,
+              ),
+            );
           }
-
           return Menu();
         });
   }

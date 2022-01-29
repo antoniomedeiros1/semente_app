@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthenticationService extends ChangeNotifier {
   //Email Signin
@@ -35,8 +34,10 @@ class AuthenticationService extends ChangeNotifier {
           email: email, password: password);
 
       notifyListeners();
+      print("signed up");
       return "Signed up";
     } on FirebaseAuthException catch (e) {
+      print(e.message);
       return e.message;
     }
   }

@@ -16,13 +16,12 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xffD94928),
+        backgroundColor: Colors.cyan,
         actions: [
           IconButton(
             icon: Icon(Icons.logout),
             onPressed: () {
               context.read<AuthenticationService>().signOut();
-              context.read<GoogleSignInProvider>().googleSignOut();
             },
           ),
         ],

@@ -16,10 +16,9 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  final Color buttonColor = Color(0xffD94928);
+  final Color buttonColor = Colors.cyan;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  bool _isObscure = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +63,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 },
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xffD94928),
+                                color: Colors.cyan,
                               ),
                             ),
                           ],
