@@ -5,6 +5,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_auth_db/screens/discover/discover_screen.dart';
+import 'package:firebase_auth_db/constants.dart';
 
 class Menu extends StatefulWidget {
   const Menu({Key? key}) : super(key: key);
@@ -57,7 +59,7 @@ class _MenuState extends State<Menu> {
                 width: MediaQuery.of(context).size.width - 40,
                 child: TextButton(
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.cyan),
+                      backgroundColor: MaterialStateProperty.all(kPrimaryColor),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0),
@@ -66,7 +68,8 @@ class _MenuState extends State<Menu> {
                       elevation: MaterialStateProperty.all(8.0)),
                   onPressed: () {
                     Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => SignUpPage()));
+                        // MaterialPageRoute(builder: (context) => SignUpPage()));
+                        MaterialPageRoute(builder: (context) => DiscoverScreen()));
                   },
                   child: Text(
                     "Registrar com email",
@@ -97,7 +100,7 @@ class _MenuState extends State<Menu> {
                           },
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.cyan,
+                          color: kPrimaryColor,
                           decoration: TextDecoration.underline,
                         ),
                       ),
