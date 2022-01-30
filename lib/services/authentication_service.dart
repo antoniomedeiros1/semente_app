@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class AuthenticationService extends ChangeNotifier {
-  //Email Signin
+  
   final FirebaseAuth _firebaseAuth;
   AuthenticationService(this._firebaseAuth);
 

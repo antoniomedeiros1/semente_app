@@ -7,6 +7,8 @@ import 'package:firebase_auth_db/screens/discover/components/discover_small_card
 import 'package:flutter_svg/svg.dart';
 import 'package:firebase_auth_db/screens/chat/chat_screen.dart';
 import 'package:firebase_auth_db/constants.dart';
+import 'package:firebase_auth_db/services/authentication_service.dart';
+import 'package:provider/provider.dart';
 
 class DiscoverScreen extends StatefulWidget {
   const DiscoverScreen({
@@ -27,7 +29,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
           physics: BouncingScrollPhysics(),
           children: [
             Padding(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 left: 36,
                 right: 18,
                 top: 36,
@@ -35,7 +37,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     "Semente",
                     style: TextStyle(
                       color: Colors.black,
@@ -43,10 +45,16 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       fontWeight: FontWeight.bold
                     )
                   ),
-                  Image(
+                  const Image(
                     image: AssetImage("lib/assets/images/semente-logo-small.png"),
                     width: 50,
                     height: 50
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.logout, color: Colors.cyan,),
+                    onPressed: () {
+                      context.read<AuthenticationService>().signOut();
+                    },
                   ),
                 ],
               ),
@@ -56,8 +64,8 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               width: 10,
               height: 50,
               alignment: Alignment.bottomCenter,
-              padding: EdgeInsets.only(right: 20, left:20,),
-              child: Text(
+              padding: const EdgeInsets.only(right: 20, left:20,),
+              child: const Text(
                 "Selecione uma das opções abaixo para falar com nosso chat bot",
                 style: TextStyle(
                   color: Color(0xff515979),

@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_local_variable
 
+import 'package:firebase_auth_db/main.dart';
 import 'package:firebase_auth_db/services/authentication_service.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,9 +16,12 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+
   final Color buttonColor = Colors.cyan;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final fail = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +41,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Sign Up",
+                        "Cadastro",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 26,
@@ -51,9 +54,9 @@ class _SignUpPageState extends State<SignUpPage> {
                             color: Colors.black,
                           ),
                           children: <TextSpan>[
-                            TextSpan(text: 'or'),
+                            TextSpan(text: 'ou'),
                             TextSpan(
-                              text: ' Sign in',
+                              text: ' fazer login',
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
                                   Navigator.pushReplacement(
@@ -73,14 +76,33 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 40,
-              ),
+              SizedBox(height: 40,),
               Container(
                 width: MediaQuery.of(context).size.width - 40,
                 margin: EdgeInsets.only(left: 20.0, right: 20.0),
                 child: Column(
                   children: [
+
+                  Column(
+                      children: [
+                        Container(
+                          alignment: Alignment.topLeft,
+                          child: (fail) 
+                          ? Text(
+                            'Ocorreu um erro!',
+                            style: TextStyle(
+                                color: Colors.red[500],
+                            ),
+                          )
+                          : null
+                        ),
+
+                        SizedBox(height: 8),
+                      ],
+                    ),
+
+                    
+
                     Row(
                       children: [
                         SizedBox(
@@ -90,7 +112,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               keyboardType: TextInputType.name,
                               decoration: InputDecoration(
                                 fillColor: Colors.white,
-                                hintText: 'firstname',
+                                hintText: 'Primeiro nome',
                                 border: OutlineInputBorder(
                                   borderSide: const BorderSide(
                                       color: Color(0xffE0E0E0), width: 2.0),
@@ -108,7 +130,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               keyboardType: TextInputType.name,
                               decoration: InputDecoration(
                                 fillColor: Colors.white,
-                                hintText: 'lastname',
+                                hintText: 'Sobrenome',
                                 border: OutlineInputBorder(
                                   borderSide: const BorderSide(
                                       color: Color(0xffE0E0E0), width: 2.0),
@@ -130,20 +152,24 @@ class _SignUpPageState extends State<SignUpPage> {
                     SizedBox(
                       height: 8,
                     ),
-                    buildPasswordField('Password'),
+                    buildPasswordField('Senha'),
                     SizedBox(
                       height: 8,
                     ),
-                    buildPasswordField('Confirm password'),
+                    buildPasswordField('Confirmação da senha'),
                     SizedBox(
                       height: 5,
                     ),
-                    Text(
-                        "Must be at least 8 characters including upper, lower case letters and or a symbol ( e.g ythhYT8!)"),
+                    Container(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        "Deve conter pelo menos 8 caracteres"
+                      ),
+                    ),
                     SizedBox(
                       height: 20,
                     ),
-                    buildSignUpButton(buttonColor),
+                    buildSignUpButton(buttonColor, fail),
                     SizedBox(
                       height: 5,
                     ),
@@ -201,7 +227,7 @@ class _SignUpPageState extends State<SignUpPage> {
         ));
   }
 
-  Widget buildSignUpButton(Color buttonClr) {
+  Widget buildSignUpButton(Color buttonClr, bool fail) {
     return SizedBox(
       height: 50,
       width: MediaQuery.of(context).size.width - 40,
@@ -214,11 +240,16 @@ class _SignUpPageState extends State<SignUpPage> {
             ))),
         onPressed: () {
           context.read<AuthenticationService>().signUp(
-              email: emailController.text.trim(),
-              password: passwordController.text.trim());
+            email: emailController.text.trim(),
+            password: passwordController.text.trim()
+          )
+          .then((value) => value == "Signed up" 
+            ? Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SignInPage()))
+            : print(value)
+          );
         },
         child: Text(
-          "Sign up",
+          "Criar cadastro",
           style: TextStyle(color: Colors.white, fontSize: 18),
         ),
       ),
@@ -239,7 +270,7 @@ class _SignUpPageState extends State<SignUpPage> {
           final regExp = RegExp(pattern);
 
           if (!regExp.hasMatch(value!)) {
-            return 'Enter a valid mail';
+            return 'Email inválido';
           } else {
             return null;
           }
@@ -269,7 +300,7 @@ class _SignUpPageState extends State<SignUpPage> {
         enableSuggestions: false,
         validator: (value) {
           if (value!.isEmpty || value.length < 7) {
-            return 'Password must be at least 7 characters long.';
+            return 'A senha deve conter pelo menos 7 caracteres';
           }
         },
         obscureText: true,

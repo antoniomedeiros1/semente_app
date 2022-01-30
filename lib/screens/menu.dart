@@ -59,7 +59,7 @@ class _MenuState extends State<Menu> {
                 width: MediaQuery.of(context).size.width - 40,
                 child: TextButton(
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(kPrimaryColor),
+                      backgroundColor: MaterialStateProperty.all(Colors.cyan),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0),
@@ -68,8 +68,7 @@ class _MenuState extends State<Menu> {
                       elevation: MaterialStateProperty.all(8.0)),
                   onPressed: () {
                     Navigator.pushReplacement(context,
-                        // MaterialPageRoute(builder: (context) => SignUpPage()));
-                        MaterialPageRoute(builder: (context) => DiscoverScreen()));
+                        MaterialPageRoute(builder: (context) => SignUpPage()));
                   },
                   child: Text(
                     "Registrar com email",
@@ -100,7 +99,7 @@ class _MenuState extends State<Menu> {
                           },
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: kPrimaryColor,
+                          color: Colors.cyan,
                           decoration: TextDecoration.underline,
                         ),
                       ),

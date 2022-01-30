@@ -1,6 +1,7 @@
 import 'package:firebase_auth_db/services/authentication_service.dart';
 import 'package:firebase_auth_db/screens/menu.dart';
 import 'package:firebase_auth_db/screens/signup.dart';
+import 'package:firebase_auth_db/screens/discover/discover_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,8 +14,7 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-  bool _isObscure = true;
-  final Color buttonColor = Color(0xffD94928);
+  // bool _isObscure = true;
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -32,57 +32,49 @@ class _SignInPageState extends State<SignInPage> {
             child: Column(
               children: [
                 Column(
-                  children: [
+                  children: const [
                     Text(
-                      "Welcome back!",
+                      "Bem vindo!",
                       style:
                           TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     ),
                     Text(
-                      "Yaay! Enter your password to continue",
+                      "Semente: um app para acolher vidas",
                       style: TextStyle(fontSize: 16),
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 40,
-                ),
+                const SizedBox(height: 40),
                 buildEmailField(),
-                SizedBox(
-                  height: 8,
-                ),
-                buildPasswordField('Enter your password'),
-                SizedBox(
-                  height: 50,
-                ),
-                SizedBox(
-                  height: 70,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Image(
-                          image:
-                              AssetImage("lib/assets/images/signin_icon.png")),
-                      Text(
-                        "Face ID",
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 12,
-                ),
+                const SizedBox(height: 8),
+                buildPasswordField('Digite sua senha'),
+                const SizedBox(height: 50),
+                // SizedBox(
+                //   height: 70,
+                //   child: Column(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       Image(
+                //           image:
+                //               AssetImage("lib/assets/images/signin_icon.png")),
+                //       Text(
+                //         "Face ID",
+                //         style: TextStyle(fontSize: 16),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                const SizedBox(height: 12),
                 RichText(
                   text: TextSpan(
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 14.0,
                       color: Colors.black,
                     ),
                     children: <TextSpan>[
                       TextSpan(
-                        text: 'Forgot password?',
+                        text: 'Esqueceu sua senha?',
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             Navigator.pushReplacement(
@@ -90,27 +82,25 @@ class _SignInPageState extends State<SignInPage> {
                                 MaterialPageRoute(
                                     builder: (context) => Menu()));
                           },
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Color(0xffD94928),
+                          color: Colors.cyan,
                         ),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 12,
-                ),
+                const SizedBox(height: 12),
                 RichText(
                   text: TextSpan(
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 14.0,
                       color: Colors.black,
                     ),
                     children: <TextSpan>[
-                      TextSpan(text: "Don't have an account yet? "),
+                      const TextSpan(text: "Ainda não se cadastrou? "),
                       TextSpan(
-                        text: ' Sign Up',
+                        text: ' Fazer cadastro',
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             Navigator.pushReplacement(
@@ -118,23 +108,21 @@ class _SignInPageState extends State<SignInPage> {
                                 MaterialPageRoute(
                                     builder: (context) => SignUpPage()));
                           },
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Color(0xffD94928),
+                          color: Colors.cyan,
                         ),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 75,
-                ),
+                const SizedBox(height: 75),
                 SizedBox(
                   height: 50,
                   width: MediaQuery.of(context).size.width - 40,
                   child: TextButton(
                     style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(buttonColor),
+                        backgroundColor: MaterialStateProperty.all(Colors.cyan),
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
@@ -142,10 +130,14 @@ class _SignInPageState extends State<SignInPage> {
                         ))),
                     onPressed: () {
                       context.read<AuthenticationService>().signIn(
-                          email: emailController.text.trim(),
-                          password: passwordController.text.trim());
+                        email: emailController.text.trim(),
+                        password: passwordController.text.trim()
+                      ).then((value) => value == "Signed in"
+                        ? Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => DiscoverScreen()))
+                        : print(value)
+                      );
                     },
-                    child: Text(
+                    child: const Text(
                       "Login",
                       style: TextStyle(color: Colors.white, fontSize: 18),
                     ),
@@ -165,7 +157,7 @@ class _SignInPageState extends State<SignInPage> {
       child: TextFormField(
         controller: emailController,
         textCapitalization: TextCapitalization.none,
-        key: ValueKey('email'),
+        key: const ValueKey('email'),
         autocorrect: false,
         enableSuggestions: false,
         validator: (value) {
@@ -198,7 +190,7 @@ class _SignInPageState extends State<SignInPage> {
       child: TextFormField(
         controller: passwordController,
         textCapitalization: TextCapitalization.none,
-        key: ValueKey('password'),
+        key: const ValueKey('password'),
         autocorrect: false,
         enableSuggestions: false,
         validator: (value) {

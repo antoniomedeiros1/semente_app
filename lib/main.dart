@@ -1,19 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth_db/constants.dart';
+import 'package:firebase_auth_db/screens/discover/discover_screen.dart';
 import 'package:firebase_auth_db/services/authentication_service.dart';
-import 'package:firebase_auth_db/services/google_sign_in.dart';
-import 'package:firebase_auth_db/screens/homepage.dart';
 import 'package:firebase_auth_db/screens/menu.dart';
-import 'package:firebase_auth_db/screens/onboarding.dart';
-import 'package:firebase_auth_db/screens/signin.dart';
-import 'package:firebase_auth_db/screens/signup.dart';
+import 'package:firebase_auth_db/screens/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 
-import 'services/google_sign_in.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,8 +31,6 @@ class MyApp extends StatelessWidget {
               context.read<AuthenticationService>().authStateChanges,
           initialData: null,
         ),
-        ListenableProvider<GoogleSignInProvider>(
-            create: (context) => GoogleSignInProvider()),
       ],
       child: GetMaterialApp(
         theme: ThemeData(
@@ -51,7 +44,7 @@ class MyApp extends StatelessWidget {
 }
 
 class AuthenticationWrapper extends StatelessWidget {
-  const AuthenticationWrapper({Key? key}) : super(key: key);
+  AuthenticationWrapper({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -60,23 +53,7 @@ class AuthenticationWrapper extends StatelessWidget {
         builder: (_, snapshot) {
           if (snapshot.hasData) {
             User? user = snapshot.data;
-            return Scaffold(
-              appBar: AppBar(
-                backgroundColor: Colors.cyan,
-                actions: [
-                  IconButton(
-                    icon: Icon(Icons.logout),
-                    onPressed: () {
-                      context.read<AuthenticationService>().signOut();
-                    },
-                  ),
-                ],
-              ),
-              body: Text(
-                "Bem vindo, " + (user?.email).toString(),
-                textAlign: TextAlign.start,
-              ),
-            );
+            return DiscoverScreen();
           }
           return Menu();
         });
