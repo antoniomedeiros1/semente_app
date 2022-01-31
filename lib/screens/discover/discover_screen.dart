@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 // import 'package:firebase_auth_db/screens/discover/detail_page.dart';
@@ -11,9 +12,10 @@ import 'package:firebase_auth_db/services/authentication_service.dart';
 import 'package:provider/provider.dart';
 
 class DiscoverScreen extends StatefulWidget {
-  const DiscoverScreen({
-    Key? key,
-  }) : super(key: key);
+
+  final User user;
+
+  const DiscoverScreen(this.user, {Key? key}) : super(key: key);
 
   @override
   _DiscoverScreenState createState() => _DiscoverScreenState();
@@ -23,15 +25,15 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey[50],
       body: SafeArea(
         child: ListView(
           physics: BouncingScrollPhysics(),
           children: [
             Padding(
               padding: const EdgeInsets.only(
-                left: 36,
-                right: 18,
+                left: 20,
+                right: 20,
                 top: 36,
               ),
               child: Row(
@@ -41,17 +43,17 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     "Semente",
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: 34,
+                      fontSize: 36,
                       fontWeight: FontWeight.bold
                     )
                   ),
-                  const Image(
-                    image: AssetImage("lib/assets/images/semente-logo-small.png"),
-                    width: 50,
-                    height: 50
-                  ),
+                  // const Image(
+                  //   image: AssetImage("lib/assets/images/semente-logo-small.png"),
+                  //   width: 50,
+                  //   height: 50
+                  // ),
                   IconButton(
-                    icon: const Icon(Icons.logout, color: Colors.cyan,),
+                    icon: const Icon(Icons.logout, color: Colors.cyan, size: 30),
                     onPressed: () {
                       context.read<AuthenticationService>().signOut();
                     },
@@ -59,19 +61,31 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                 ],
               ),
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20),
             Container(
               width: 10,
-              height: 50,
+              height: 80,
               alignment: Alignment.bottomCenter,
               padding: const EdgeInsets.only(right: 20, left:20,),
-              child: const Text(
-                "Selecione uma das opções abaixo para falar com nosso chat bot",
-                style: TextStyle(
-                  color: Color(0xff515979),
-                  fontSize: 14
-                ),
-                textAlign: TextAlign.center,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Bem vindo, ${widget.user.email}!",
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 22,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    "Selecione uma das opções abaixo para falar com nosso chat bot",
+                    style: TextStyle(
+                      color: Color(0xff515979),
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
               ),
             ),
             Container(
@@ -216,6 +230,20 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
           ],
         ),
       ),
+      bottomNavigationBar: BottomAppBar(
+        elevation: 20.0,
+        shape: const CircularNotchedRectangle(),
+        child: Container(
+          height: 50.0,
+        )
+      ),
+      floatingActionButton:  FloatingActionButton(
+        backgroundColor: Colors.cyan,
+        onPressed: () => null,
+        tooltip: 'Cadastrar novo cliente',
+        child: const Icon(Icons.spa_outlined, ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 

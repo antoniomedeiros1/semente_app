@@ -1,3 +1,4 @@
+import 'package:firebase_auth_db/main.dart';
 import 'package:firebase_auth_db/services/authentication_service.dart';
 import 'package:firebase_auth_db/screens/menu.dart';
 import 'package:firebase_auth_db/screens/signup.dart';
@@ -133,7 +134,7 @@ class _SignInPageState extends State<SignInPage> {
                         email: emailController.text.trim(),
                         password: passwordController.text.trim()
                       ).then((value) => value == "Signed in"
-                        ? Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => DiscoverScreen()))
+                        ? Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AuthenticationWrapper()))
                         : print(value)
                       );
                     },

@@ -41,4 +41,5 @@ class AuthenticationService extends ChangeNotifier {
       return e.message;
     }
   }
+
 }

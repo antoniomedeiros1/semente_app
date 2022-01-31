@@ -53,9 +53,9 @@ class AuthenticationWrapper extends StatelessWidget {
         builder: (_, snapshot) {
           if (snapshot.hasData) {
             User? user = snapshot.data;
-            return DiscoverScreen();
+            return user != null ? DiscoverScreen(user) : const Menu();
           }
-          return Menu();
+          return const Menu();
         });
   }
 }
