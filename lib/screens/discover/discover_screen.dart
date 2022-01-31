@@ -34,7 +34,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               padding: const EdgeInsets.only(
                 left: 20,
                 right: 20,
-                top: 36,
+                top: 25,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -63,23 +63,28 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
             ),
             const SizedBox(height: 20),
             Container(
-              width: 10,
-              height: 80,
-              alignment: Alignment.bottomCenter,
+              height: 120,
               padding: const EdgeInsets.only(right: 20, left:20,),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Bem vindo, ${widget.user.email}!",
-                    style: const TextStyle(
+                  const Text(
+                    "Bem vindo,",
+                    style: TextStyle(
                       color: Colors.black,
-                      fontSize: 22,
+                      fontSize: 20,
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  Text(
+                    "${widget.user.email}!",
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                    ),
+                  ),
+                  const SizedBox(height: 30),
                   const Text(
-                    "Selecione uma das opções abaixo para falar com nosso chat bot",
+                    "Selecione uma das opções abaixo para falar com nosso chatbot",
                     style: TextStyle(
                       color: Color(0xff515979),
                       fontSize: 14,
@@ -115,7 +120,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     "Nossos parceiros",
                     style: TextStyle(
                       color: Color(0xff515979),
@@ -124,7 +129,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                   ),
                   GestureDetector(
                     onTap: onSeeAllTapped,
-                    child: Text(
+                    child: const Text(
                       "Ver todos",
                       style: TextStyle(
                         color: Color(0xff4A80F0),
@@ -135,23 +140,21 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                 ],
               ),
             ),
-            SizedBox(
-              height: 16,
-            ),
+            const SizedBox(height: 16),
             SizedBox(
               height: 176,
               child: ListView(
                 physics: BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
                 children: [
-                  SizedBox(width: 25),
+                  const SizedBox(width: 25),
                   DiscoverCard(
                     tag: "Partner",
                     onTap: onPartner1Tapped,
                     title: "Nome do projeto",
                     subtitle: "Descricao",
                   ),
-                  SizedBox(width: 20),
+                  const SizedBox(width: 20),
                   DiscoverCard(
                     onTap: onPartner2Tapped,
                     title: "Nome do projeto",
@@ -162,8 +165,8 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                 ],
               ),
             ),
-            SizedBox(height: 28),
-            Padding(
+            const SizedBox(height: 28),
+            const Padding(
               padding: EdgeInsets.only(left: 25),
               child: Text(
                 "Nossos patrocinadores",
@@ -239,7 +242,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
       ),
       floatingActionButton:  FloatingActionButton(
         backgroundColor: Colors.cyan,
-        onPressed: () => null,
+        onPressed: () => onHelpTapped(),
         tooltip: 'Cadastrar novo cliente',
         child: const Icon(Icons.spa_outlined, ),
       ),
