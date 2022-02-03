@@ -1,5 +1,7 @@
 import 'package:firebase_auth_db/constants.dart';
+import 'package:firebase_auth_db/services/functions.dart';
 import 'package:flutter/material.dart';
+
 
 import 'components/body.dart';
 
@@ -14,6 +16,9 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   @override
+
+  final functions = CloudFunctions();
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
@@ -27,11 +32,11 @@ class _ChatScreenState extends State<ChatScreen> {
       automaticallyImplyLeading: false,
       title: Row(
         children: [
-          BackButton(),
-          SizedBox(width: kDefaultPadding * 2),
+          const BackButton(),
+          const SizedBox(width: kDefaultPadding * 2),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: const [
               Text(
                 "Ligação de emergência",
                 style: TextStyle(fontSize: 16),
@@ -46,10 +51,12 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
       actions: [
         IconButton(
-          icon: Icon(Icons.local_phone),
-          onPressed: () {},
+          icon: const Icon(Icons.local_phone),
+          onPressed: () {
+            functions.dialogflowMessage("foo", "oi");
+          },
         ),
-        SizedBox(width: kDefaultPadding / 2),
+        const SizedBox(width: kDefaultPadding / 2),
       ],
     );
   }

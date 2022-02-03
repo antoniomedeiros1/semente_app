@@ -180,7 +180,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 25),
               child: GridView(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 19,
                   mainAxisExtent: 125,
@@ -234,13 +234,13 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        elevation: 20.0,
         shape: const CircularNotchedRectangle(),
         child: Container(
-          height: 50.0,
+          height: 60.0,
         )
       ),
       floatingActionButton:  FloatingActionButton(
+        elevation: 9.0,
         backgroundColor: Colors.cyan,
         onPressed: () => onHelpTapped(),
         tooltip: 'Cadastrar novo cliente',

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:firebase_auth_db/services/functions.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sound_stream/sound_stream.dart';
 import 'package:firebase_auth_db/constants.dart';
@@ -17,7 +18,9 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+
   final List<ChatMessage> chatMessages = <ChatMessage>[];
+  final functions = CloudFunctions();
 
   bool _isRecording = false;
 
@@ -79,21 +82,17 @@ class _BodyState extends State<Body> {
   }
 
   void handleSubmitted(String text) async {
-    print(text);
+    // print(text);
     _textController.clear();
 
-    if (!text.isEmpty) {
+    if (text.isNotEmpty) {
+
       addTextMessage(text, true);
 
-      /*DetectIntentResponse? data = await dialogflow?.detectIntent(text, 'pt-BR');
-      String? fulfillmentText = data?.queryResult.fulfillmentText;
-      if (!fulfillmentText.isEmpty) {
-        addTextMessage(fulfillmentText, false);
-      } else {
-        String errorMessage = "Ops! Infelizmente, tive um problema técnico. Peço desculpas pela incoveniência!";
-        addTextMessage(errorMessage, false);
-      }
-      */
+      final response = await functions.dialogflowMessage("foo", text);
+
+      addTextMessage(response?.message ?? 'Desculpe, houve um problema.', false);
+
     }
   }
 
@@ -247,7 +246,9 @@ class _BodyState extends State<Body> {
                         IconButton(
                           color: kPrimaryColor,
                           icon: Icon(Icons.send),
-                          onPressed: () => handleSubmitted(_textController.text),
+                          onPressed: () => {
+                            handleSubmitted(_textController.text),
+                          }
                         ),
                       ],
                     ),
