@@ -53,7 +53,7 @@ class _ChatScreenState extends State<ChatScreen> {
         IconButton(
           icon: const Icon(Icons.local_phone),
           onPressed: () {
-            functions.dialogflowMessage("foo", "oi");
+            // 
           },
         ),
         const SizedBox(width: kDefaultPadding / 2),

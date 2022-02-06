@@ -13,26 +13,22 @@ class CategoryBoxes extends StatelessWidget {
     return Center(
       child: GestureDetector(
         onTap: () => onTap!(),
-        child: Padding(
-          padding: EdgeInsets.only(right: 10),
-          child: Container(
-            height: 48,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: color,
-              // boxShadow: isSelected ? [
-              //   BoxShadow(
-              //     color: Color(0xff4A80F0).withOpacity(0.3),
-              //     offset: Offset(0,4),
-              //     blurRadius: 20
-              //   ),
-              // ]: [],
-            ),
-            child: Center(
-              child: Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 16, vertical: 13),
-                child: Text(text!, style: TextStyle(color: Colors.white, fontSize:  17, fontWeight: FontWeight.normal),),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: color,
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.grey,
+                offset: Offset(0,1),
+                blurRadius: 2
               ),
+            ],
+          ),
+          child: Center(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              child: Text(text!, style: TextStyle(color: Colors.white, fontSize:  16, fontWeight: FontWeight.w500), textAlign: TextAlign.center,),
             ),
           ),
         ),

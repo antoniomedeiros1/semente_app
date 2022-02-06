@@ -12,6 +12,7 @@ class DiscoverCard extends StatelessWidget {
   final Widget? vectorTop;
   final Function? onTap;
   final String? tag;
+  final Widget? icon;
   const DiscoverCard(
       {Key? key,
       this.title,
@@ -23,7 +24,8 @@ class DiscoverCard extends StatelessWidget {
       this.vectorBottom,
       this.vectorTop,
       this.onTap,
-      this.tag})
+      this.tag,
+      this.icon})
       : super(key: key);
 
   @override
@@ -109,26 +111,18 @@ class DiscoverCard extends StatelessWidget {
                               : Container(),
                         ],
                       ),
-                      Row(
-                        children: [
-                          SizedBox(
-                              height: 24,
-                              width: 24,
-                              child: SvgPicture.asset(
-                                "lib/assets/images/svg/headphone.svg",
-                                fit: BoxFit.cover,
-                              )
-                          ),
-                          SizedBox(width: 24),
-                          SizedBox(
-                              height: 24,
-                              width: 24,
-                              child: SvgPicture.asset(
-                                "lib/assets/images/svg/tape.svg",
-                                fit: BoxFit.cover,
-                              )
-                          ),
-                        ],
+                      Container(
+                        padding: const EdgeInsets.fromLTRB(5, 5, 20, 0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            SizedBox(
+                                height: 24,
+                                width: 24,
+                                child: icon,
+                            ),
+                          ],
+                        ),
                       )
                     ],
                   ),
