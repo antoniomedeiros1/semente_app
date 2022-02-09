@@ -19,7 +19,7 @@ class Message extends StatelessWidget {
         case ChatMessageType.text:
           return TextMessage(message: message);
         default:
-          return SizedBox();
+          return const SizedBox();
       }
     }
 
@@ -30,8 +30,8 @@ class Message extends StatelessWidget {
             message.isSender ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
           if (!message.isSender) ...[
-            Icon(Icons.account_circle, color: kPrimaryColor),
-            SizedBox(width: kDefaultPadding / 2),
+            const Icon(Icons.account_circle, color: kPrimaryColor),
+            const SizedBox(width: kDefaultPadding * 0.1),
           ],
           messageContent(message),
         ],

@@ -142,39 +142,28 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     physics: NeverScrollableScrollPhysics(),
                     children: [
                       CategoryBoxes(
-                        onTap: onHelpTapped,
+                        onTap: () => onSupportTapped('Quero ajuda'),
                         text: "Quero ajuda!",
                         color: Colors.cyan[400],
                       ),
                       CategoryBoxes(
-                        onTap: onSupportTapped,
+                        onTap: () => onSupportTapped('Fazer autoavaliação'),
                         text: "Fazer autoavaliação",
                         color: Colors.cyan[400],
                       ),
                       CategoryBoxes(
-                        onTap: onSupportTapped,
+                        onTap: () => onSupportTapped('Conversar com alguem'),
                         text: "Conversar com alguém",
                         color: Colors.cyan[400],
                       ),
                       CategoryBoxes(
-                        onTap: onSupportTapped,
+                        onTap: () => onSupportTapped('Onde conseguir atendimento'),
                         text: "Onde conseguir atendimento",
                         color: Colors.cyan[400],
                       ),
                     ],
                   ),
                   const SizedBox(height: 10,),
-                  CategoryBoxes(
-                    onTap: onSupportTapped,
-                    text: "Cadastrar ONG no projeto",
-                    color: Colors.orange[400],
-                  ),
-                  const SizedBox(height: 10,),
-                  CategoryBoxes(
-                    onTap: onSupportTapped,
-                    text: "Quero ser voluntário",
-                    color: Colors.green[400],
-                  ),
                 ],
               ),
             ),
@@ -217,8 +206,8 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     onTap: onPartner1Tapped,
                     title: "Depressão",
                     subtitle: "Saiba como identificar os principais sintomas",
-                    gradientStartColor: Color(0xFF00EAFF),
-                    gradientEndColor: Color(0xFF06A7A7),
+                    gradientStartColor: Color(0xFF21DEF0),
+                    gradientEndColor: Color(0xFF5BB8B8),
                     icon: const Icon(Icons.info, color: Colors.white, size: 35,),
                   ),
                   const SizedBox(width: 20),
@@ -230,74 +219,49 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     gradientEndColor: Color(0xffF6815B),
                     icon: const Icon(Icons.info, color: Colors.white, size: 35,),
                   ),
+                  const SizedBox(width: 20),
+                  DiscoverCard(
+                    onTap: onPartner2Tapped,
+                    title: "Síndrome de Burnout",
+                    subtitle: "Por que o problema vem crescendo nos últimos anos e como se prevenir",
+                    gradientStartColor: Color(0xFF8AE043),
+                    gradientEndColor: Color(0xFF88BE5C),
+                    icon: const Icon(Icons.info, color: Colors.white, size: 35,),
+                  ),
                 ],
               ),
             ),
-            const SizedBox(height: 28),
-            // const Padding(
-            //   padding: EdgeInsets.only(left: 25),
-            //   child: Text(
-            //     "Conheça outros projetos",
-            //     style: TextStyle(
-            //       color: Color(0xff515979),
-            //       fontSize: 14
-            //     ),
-            //   ),
-            // ),
-            // SizedBox(height: 16),
-            // Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: 25),
-            //   child: GridView(
-            //     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            //       crossAxisCount: 2,
-            //       crossAxisSpacing: 19,
-            //       mainAxisExtent: 125,
-            //       mainAxisSpacing: 19
-            //     ),
-            //     shrinkWrap: true,
-            //     physics: NeverScrollableScrollPhysics(),
-            //     children: [
-            //       DiscoverSmallCard(
-            //         onTap: () {},
-            //         title: "Patrocinador",
-            //         gradientStartColor: Color(0xff13DEA0),
-            //         gradientEndColor: Color(0xff06B782),
-            //       ),
-            //       DiscoverSmallCard(
-            //         onTap: () {},
-            //         title: "Patrocinador",
-            //         gradientStartColor: Color(0xffFC67A7),
-            //         gradientEndColor: Color(0xffF6815B),
-            //         icon: SizedBox(
-            //             height: 24,
-            //             width: 24,
-            //             child: SvgPicture.asset(
-            //               "lib/assets/images/svg/tape.svg",
-            //               fit: BoxFit.cover,
-            //             )
-            //         ),
-            //       ),
-            //       DiscoverSmallCard(
-            //         onTap: () {},
-            //         title: "Patrocinador",
-            //         gradientStartColor: Color(0xffFFD541),
-            //         gradientEndColor: Color(0xffF0B31A),
-            //       ),
-            //       DiscoverSmallCard(
-            //         onTap: () {},
-            //         title: "Patrocinador",
-            //         icon: SizedBox(
-            //             height: 24,
-            //             width: 24,
-            //             child: SvgPicture.asset(
-            //               "lib/assets/images/svg/tape.svg",
-            //               fit: BoxFit.cover,
-            //             )
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // )
+            const SizedBox(height: 35),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 25),
+              child: const Text(
+                "Estamos buscando por projetos e voluntários da área",
+                style: TextStyle(
+                  color: Color(0xff515979),
+                  fontSize: 13,
+                ),
+                textAlign: TextAlign.left,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+              child: Column(
+                children: [
+                  CategoryBoxes(
+                    onTap: () => onSupportTapped('Quero ser voluntário'),
+                    text: "Cadastrar ONG",
+                    color: Colors.orange[400],
+                  ),
+                  const SizedBox(height: 10,),
+                  CategoryBoxes(
+                    onTap: () => onSupportTapped('Quero ser voluntário'),
+                    text: "Quero ser voluntário",
+                    color: Colors.green[400],
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -312,27 +276,27 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
       //     ),
       //   ),
       // ),
-      floatingActionButton:  Container(
-        height: 70,
-        width: 70,
+      floatingActionButton: SizedBox(
+        height: 65,
+        width: 65,
         child: FloatingActionButton(
           elevation: 15,
-          backgroundColor: Colors.blue,
-          onPressed: () => onHelpTapped(),
+          backgroundColor: Colors.cyan,
+          onPressed: () => onSupportTapped('Olá'),
           tooltip: 'Cadastrar novo cliente',
-          child: const Icon(Icons.chat, size: 25,),
+          child: const Icon(Icons.auto_awesome, size: 30,),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 
-  void onHelpTapped() {
-    Get.to(() => const ChatScreen(help: true), transition: Transition.rightToLeft);
-  }
+  // void onHelpTapped() {
+  //   Get.to(() => const ChatScreen(help: true), transition: Transition.rightToLeft);
+  // }
 
-  void onSupportTapped() {
-    Get.to(() => const ChatScreen(help: false), transition: Transition.rightToLeft);
+  String? onSupportTapped(String text) {
+    Get.to(() => ChatScreen(help: text), transition: Transition.rightToLeft);
   }
 
   void onSeeAllTapped() {

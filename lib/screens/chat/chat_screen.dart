@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'components/body.dart';
 
 class ChatScreen extends StatefulWidget {
-  final bool? help;
+  final String help;
 
-  const ChatScreen({Key? key, @required this.help})
+  const ChatScreen({Key? key, required this.help})
       : super(key: key);
   @override
   _ChatScreenState createState() => _ChatScreenState();

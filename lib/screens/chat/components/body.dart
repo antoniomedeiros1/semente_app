@@ -9,9 +9,9 @@ import 'package:flutter/material.dart';
 import 'message.dart';
 
 class Body extends StatefulWidget {
-  final bool? help;
+  final String help;
 
-  const Body({Key? key, @required this.help})
+  const Body({Key? key, required this.help})
       : super(key: key);
   @override
   _BodyState createState() => _BodyState();
@@ -28,8 +28,13 @@ class _BodyState extends State<Body> {
   late StreamSubscription _recorderStatus;
   late StreamSubscription<List<int>>? _audioStreamSubscription;
   late BehaviorSubject<List<int>> _audioStream;
+  final ScrollController _controller = ScrollController();
 
   final TextEditingController _textController = TextEditingController();
+
+  void _scrollDown() {
+    _controller.jumpTo(_controller.position.maxScrollExtent);
+  }
 
   void addTextMessage(String text, bool isSender) {
     setState(() {
@@ -81,7 +86,7 @@ class _BodyState extends State<Body> {
     await _audioStream.close();
   }
 
-  void handleSubmitted(String text) async {
+  Future<void> handleSubmitted(String text) async {
     // print(text);
     _textController.clear();
 
@@ -92,6 +97,8 @@ class _BodyState extends State<Body> {
       final response = await functions.dialogflowMessage("foo", text);
 
       addTextMessage(response?.message ?? 'Desculpe, houve um problema.', false);
+
+      // _scrollDown(response != null);
 
     }
   }
@@ -170,20 +177,24 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     if (chatMessages.isEmpty) {
       String? firstMessage;
-      if(widget.help!) {
-        firstMessage = "Olá! Sou o Semente, um chat bot inteligente, e quero te conhecer mais para poder te ajudar! Você pode me contar seu nome, idade e cidade de origem?";
-      } else {
-        firstMessage = "Olá! Sou o Semente, um chat bot inteligente, e agradeço pela sua ajuda! Para começar, você pode me contar seu nome, idade e cidade de origem?";
-      }
-      addTextMessage(firstMessage, false);
-    }
+      firstMessage = widget.help;
+      // if(widget.help!) {
+      //   firstMessage = "Olá! Sou o Semente, um chat bot inteligente, e quero te conhecer mais para poder te ajudar! Você pode me contar seu nome, idade e cidade de origem?";
+      // } else {
+      //   firstMessage = "Olá! Sou o Semente, um chat bot inteligente, e agradeço pela sua ajuda! Para começar, você pode me contar seu nome, idade e cidade de origem?";
+      // }
+    handleSubmitted(firstMessage);
+    // addTextMessage(firstMessage, true);
+  }
 
-    return Column(
-      children: [
+  return Column(
+    children: [
         Expanded(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
             child: ListView.builder(
+              padding: const EdgeInsets.only(bottom: 20),
+              controller: _controller,
               itemCount: chatMessages.length,
               itemBuilder: (context, index) =>
                   Message(message: chatMessages[index]),
@@ -191,7 +202,7 @@ class _BodyState extends State<Body> {
           ),
         ),
         Container(
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
             horizontal: kDefaultPadding,
             vertical: kDefaultPadding / 2,
           ),
@@ -237,7 +248,7 @@ class _BodyState extends State<Body> {
                           child: TextField(
                             controller: _textController,
                             onSubmitted: handleSubmitted,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               hintText: "Escreva uma mensagem",
                               border: InputBorder.none,
                             ),
@@ -245,9 +256,10 @@ class _BodyState extends State<Body> {
                         ),
                         IconButton(
                           color: kPrimaryColor,
-                          icon: Icon(Icons.send),
+                          icon: const Icon(Icons.send),
                           onPressed: () => {
-                            handleSubmitted(_textController.text),
+                            handleSubmitted(_textController.text)
+                            .then((value) => _scrollDown())
                           }
                         ),
                       ],
