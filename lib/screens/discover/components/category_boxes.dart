@@ -27,8 +27,8 @@ class CategoryBoxes extends StatelessWidget {
           ),
           child: Center(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              child: Text(text!, style: TextStyle(color: Colors.white, fontSize:  16, fontWeight: FontWeight.w500), textAlign: TextAlign.center,),
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+              child: Text(text!, style: TextStyle(color: Colors.white, fontSize:  20, fontWeight: FontWeight.w500), textAlign: TextAlign.center,),
             ),
           ),
         ),

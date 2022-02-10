@@ -119,7 +119,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
             Container(
               padding: EdgeInsets.symmetric(horizontal: 25),
               child: const Text(
-                "Selecione uma das opções abaixo para iniciar uma conversa",
+                "Selecione abaixo para iniciar uma conversa",
                 style: TextStyle(
                   color: Color(0xff515979),
                   fontSize: 16,
@@ -131,39 +131,12 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
               child: Column(
                 children: [
-                  GridView(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 10,
-                      mainAxisExtent: 60,
-                      mainAxisSpacing: 10,
-                    ),
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    children: [
-                      CategoryBoxes(
-                        onTap: () => onSupportTapped('Quero ajuda'),
-                        text: "Quero ajuda!",
-                        color: Colors.cyan[400],
-                      ),
-                      CategoryBoxes(
-                        onTap: () => onSupportTapped('Fazer autoavaliação'),
-                        text: "Fazer autoavaliação",
-                        color: Colors.cyan[400],
-                      ),
-                      CategoryBoxes(
-                        onTap: () => onSupportTapped('Conversar com alguem'),
-                        text: "Conversar com alguém",
-                        color: Colors.cyan[400],
-                      ),
-                      CategoryBoxes(
-                        onTap: () => onSupportTapped('Onde conseguir atendimento'),
-                        text: "Onde conseguir atendimento",
-                        color: Colors.cyan[400],
-                      ),
-                    ],
+                  CategoryBoxes(
+                    onTap: () => onSupportTapped('Quero ajuda'),
+                    text: "Quero ajuda!",
+                    color: Colors.cyan[400],
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(width: 20),
                 ],
               ),
             ),
@@ -276,18 +249,18 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
       //     ),
       //   ),
       // ),
-      floatingActionButton: SizedBox(
-        height: 65,
-        width: 65,
-        child: FloatingActionButton(
-          elevation: 15,
-          backgroundColor: Colors.cyan,
-          onPressed: () => onSupportTapped('Olá'),
-          tooltip: 'Cadastrar novo cliente',
-          child: const Icon(Icons.auto_awesome, size: 30,),
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      // floatingActionButton: SizedBox(
+      //   height: 65,
+      //   width: 65,
+      //   child: FloatingActionButton(
+      //     elevation: 15,
+      //     backgroundColor: Colors.cyan,
+      //     onPressed: () => onSupportTapped('Olá'),
+      //     tooltip: 'Cadastrar novo cliente',
+      //     child: const Icon(Icons.auto_awesome, size: 30,),
+      //   ),
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 
