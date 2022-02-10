@@ -42,7 +42,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 style: TextStyle(fontSize: 16),
               ),
               Text(
-                "Preciso de ajuda agora!",
+                "Ligar para o CVV",
                 style: TextStyle(fontSize: 12),
               )
             ],
